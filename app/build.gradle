@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'org.greenrobot.greendao'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.free.grfastgdutils"
+        minSdk 16
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    /**
+     * schemaVersion数据库版本号
+     * daoPackage  生成数据库的三个类放到指定的路径包名下；
+     * targetGenDir 默认生成数据库文件的目录,但可设置指定文件夹
+     * */
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.free.grfastgdutils.database.gen'
+        targetGenDir 'src/main/java'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'org.greenrobot:greendao:3.3.0'
+}
